@@ -11,7 +11,7 @@ public interface ICustomDefine {
 	public int MAKE=1,DEPOSIT=2,WITHDRAW=3,
 			INQUIRE=4,EXIT=5;
 	
-	int CREDIT_RATING_A = 7/100, 
-			CREDIT_RATING_B = 5/100 , 
-			CREDIT_RATING_C= 2/100 ;
+	public int CREDIT_RATING_A = 7, 
+			CREDIT_RATING_B = 4, 
+			CREDIT_RATING_C= 2;
 }

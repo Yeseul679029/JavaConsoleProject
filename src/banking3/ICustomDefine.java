@@ -1,4 +1,4 @@
-package banking1;
+package banking3;
 /*
 interface로 생성한다. 
 메뉴선택과 이자율 지정을 위한 인터페이스형 상수를 정의한다. 
@@ -11,7 +11,8 @@ public interface ICustomDefine {
 	public int MAKE=1,DEPOSIT=2,WITHDRAW=3,
 			INQUIRE=4,EXIT=5;
 	
-	int CREDIT_RATING_A = 7/100, 
-			CREDIT_RATING_B = 4/100 , 
-			CREDIT_RATING_C= 2/100 ;
+	public int CREDIT_RATING_A = 7, 
+			CREDIT_RATING_B = 4, 
+			CREDIT_RATING_C= 2;
+	public int YES_ALLWITHDRAW = 1, NO_ALLWITHDRAW = 2;
 }

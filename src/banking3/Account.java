@@ -1,7 +1,10 @@
-package banking2;
+package banking3;
+
+import java.util.Scanner;
+
 //계좌정보를 표현한 클래스로 NormalAccount, HighCreditAccount의 부모클래스가 된다. 
 
-public class Account {
+abstract class Account {
 
 	private String accountNumber; //계좌번호
 	private String name; //이름
@@ -54,6 +57,28 @@ public class Account {
 			//System.out.println("잔고부족");
 		}
 	}
+	//전액출금처리
+	public void allWithdraw(int money) {
+		
+		Scanner scan = new Scanner(System.in);
+		//잔고가 출금금액보다 적을때 전액출금.
+		if(balance< money) {
+			
+			allWithdrawMenu();
+			int aWd = scan.nextInt();
+			scan.nextLine();
+			if(aWd==ICustomDefine.YES_ALLWITHDRAW) {
+				balance = 0;
+				System.out.println("전액 출금되었습니다.");
+			}
+			else if (aWd==ICustomDefine.NO_ALLWITHDRAW) {
+				System.out.println("출금요청이 취소되었습니다.");
+			}
+			else {
+				System.out.println("잘못입력했습니다.");
+			}
+		}
+	}
 
 	// 전체계좌정보출력
 	public void showAccInfo() {
@@ -64,5 +89,12 @@ public class Account {
 //		System.out.println("-------");
 
 	};
+	
+	//잔액부족 전체출금 메뉴
+	public void allWithdrawMenu() {
+		System.out.println("잔고가 부족합니다. 금액전체를 출금할까요?");
+		System.out.println("1.YES : 금액전체 출금처리");
+		System.out.println("2.NO : 출금요청취소");
+	}
 	
 }

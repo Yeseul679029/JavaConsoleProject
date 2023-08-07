@@ -1,6 +1,7 @@
-package banking2;
+package banking3;
 //컨트롤 클래스로 프로그램의 전반적인 기능을 구현한다. 
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AccountManager {
@@ -80,35 +81,54 @@ public class AccountManager {
 		Scanner scan = new Scanner(System.in);
 		String searchANum = scan.nextLine();
 		
-		System.out.print("입금액 :");
-		int money = scan.nextInt();
-		System.out.println("입금이 완료되었습니다.");
-		
-		
-		//배열에 저장된 데이터 갯수만큼 반복
-		for(int i=0; i<numOfAccounts; i++) {
+		//문자입력 예외처리
+		try {
+			System.out.print("입금액 :");
+			int money = scan.nextInt();
 			
-			if(searchANum.compareTo(
-					myAccounts[i].getAccountNumber())==0) {
-				
-				myAccounts[i].deposit(money);
-//				System.out.println("입금이 완료되었습니다.");
-				isFind = true;
+			//if문으로 예외처리
+			if(money>0) {
+				if(money%500==0) {
+					//배열에 저장된 데이터 갯수만큼 반복
+					for(int i=0; i<numOfAccounts; i++) {
+						
+						if(searchANum.compareTo(
+								myAccounts[i].getAccountNumber())==0) {
+							
+							myAccounts[i].deposit(money);
+							isFind = true;
+							System.out.println("입금이 완료되었습니다.");
+						}
+					}
+					//찾는계좌가없다면
+	//				if(isFind==false) {
+	//				System.out.println("해당계좌없음");
+	//				}
+				}
+				else {
+					System.out.println("입금액은 500원 단위로 가능합니다.");
+				}
 			}
-			
+			else {
+				System.out.println("음수를 입금 할 수 없습니다.");
+			}
+		} 
+		catch (InputMismatchException e) {
+			System.out.println("정수만 입력하세요");
+			e.getMessage();
 		}
-		//찾는계좌가없다면
-//		if(isFind==false) {
-//			System.out.println("해당계좌없음");
-//		}
+		catch (Exception e) {
+			e.getMessage();
+			e.printStackTrace();
+		}
+
 		
-		
-	};   
+	}; 
+	
+	
 	// 출    금
 	public void withdrawMoney() {
 //		System.out.println("출    금 호출");
-		
-		boolean isFind = false;
 		
 		System.out.println("***출   금***");
 		System.out.println("계좌번호와 출금할 금액을 입력하세요");
@@ -118,27 +138,48 @@ public class AccountManager {
 		Scanner scan = new Scanner(System.in);
 		String searchANum = scan.nextLine();
 		
-		System.out.print("출금액 :");
-		int money = scan.nextInt();
-		System.out.println("출금이 완료되었습니다.");
-		
-		
-		//배열에 저장된 데이터 갯수만큼 반복
-		for(int i=0; i<numOfAccounts; i++) {
+		//문자입력 예외처리
+		try {
+			System.out.print("출금액 :");
+			int money = scan.nextInt();
 			
-			if(searchANum.compareTo(
-					myAccounts[i].getAccountNumber())==0) {
+			//if문으로 예외처리
+			if(money>0) {
+				if(money%1000==0) {
+					//배열에 저장된 데이터 갯수만큼 반복
+					for(int i=0; i<numOfAccounts; i++) {
+						//계좌번호 검색
+						if(searchANum.compareTo(
+								myAccounts[i].getAccountNumber())==0) {
 
-				myAccounts[i].withdraw(money);
-				isFind = true;
+							//잔액부족시 전체출금 메뉴
+							if(myAccounts[i].getBalance()<money) {
+								//전체출금메뉴 Account에서 호출
+								myAccounts[i].allWithdraw(money);
+							}
+							else {
+								myAccounts[i].withdraw(money);
+								System.out.println("출금이 완료되었습니다.");
+							}
+						}
+					}
+				}
+				else {
+					System.out.println("출금은 1000원 단위로 가능합니다.");
+				}
 			}
-			
+			else {
+				System.out.println("음수를 출금 할 수 없습니다.");
+			}
+		} 
+		catch (InputMismatchException e) {
+			System.out.println("정수만 입력하세요");
+			e.getMessage();
 		}
-		//찾는계좌가없다면
-//		if(isFind==false) {
-//			System.out.println("해당계좌없음");
-//		}
-		
+		catch (Exception e) {
+			e.getMessage();
+			e.printStackTrace();
+		}
 		
 	}; 
 	
