@@ -1,4 +1,4 @@
-package banking3;
+package banking4;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -23,7 +23,7 @@ public class BankingSystemMain {
 		Scanner scan = new Scanner(System.in);
 		
 		//기능담당 AccountManager의 인스턴스 생성
-		AccountManager AManager = new AccountManager(50);
+		AccountManager AManager = new AccountManager();
 		
 		//메뉴를 무한루프한다
 		while(true) {

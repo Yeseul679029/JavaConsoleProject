@@ -1,4 +1,4 @@
-package banking3;
+package banking4;
 /*
 interface로 생성한다. 
 메뉴선택과 이자율 지정을 위한 인터페이스형 상수를 정의한다. 

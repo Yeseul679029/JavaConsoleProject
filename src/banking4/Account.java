@@ -1,10 +1,10 @@
-package banking3;
+package banking4;
 
 import java.util.Scanner;
 
 //계좌정보를 표현한 클래스로 NormalAccount, HighCreditAccount의 부모클래스가 된다. 
 
-public abstract class Account {
+abstract class Account {
 
 	private String accountNumber; //계좌번호
 	private String name; //이름
@@ -43,9 +43,10 @@ public abstract class Account {
 		return balance;
 	}
 	
-	//입금처리 추상메서드화 자식쪽에서 오버라이딩할 예정이라 
-	public abstract void deposit(int money);
-	
+	//입금처리
+	public void deposit(int money) {
+		balance += money;
+	}
 	//출금처리
 	public void withdraw(int money) {
 		//잔고가 출금금액보다 클때 출금한다.
