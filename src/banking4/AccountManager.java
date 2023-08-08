@@ -3,6 +3,7 @@ package banking4;
 
 import java.util.HashSet;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class AccountManager {
@@ -87,6 +88,29 @@ public class AccountManager {
 				account.add(acc);
 				System.out.println("계좌계설이 완료되었습니다.");
 			}
+			
+			//계좌번호 동일한 경우 
+			/*
+			계좌번호가 동일한 경우 중복된 계좌로 판단하여 다음과 같이 처리한다.
+			중복계좌발견됨. 덮어쓸까요?(y or n)
+			y 선택시 기존정보를 삭제하고 덮어쓰기한다. 
+			n 선택시 기존의 정보를 유지한다. 즉 새로운 정보는 무시된다.
+			 */
+			
+			boolean accFind = false;
+			
+			Iterator<Account> it = account.iterator();
+			
+			while(it.hasNext()) {
+				
+				Account
+				
+			}
+			
+			
+			
+			
+			
 		} catch (InputMismatchException e) {
 			System.out.println("숫자로만 입력해주세요");
 			scan.nextLine();

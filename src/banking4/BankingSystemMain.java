@@ -9,11 +9,11 @@ public class BankingSystemMain {
 	//메뉴출력 메서드
 	public static void showMenu() {
 		System.out.println("-----Menu------");
-		System.out.println("1.계좌개설");
-		System.out.println("2.입	금");
-		System.out.println("3.출	금");
-		System.out.println("4.계좌정보출력");
-		System.out.println("5.프로그램종료");		
+		System.out.print("1.계좌개설 ");
+		System.out.print("2.입	금 ");
+		System.out.print("3.출	금");
+		System.out.print("\n4.계좌정보출력 ");
+		System.out.print("5.프로그램종료\n");		
 	};
 	
 	public static void main(String[] args){

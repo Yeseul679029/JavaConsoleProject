@@ -27,7 +27,7 @@ public class NormalAccount extends Account{
 		myMoney+= (myMoney*(interestRate/100))+ money ;
 		super.setBalance(myMoney);
 	}
-	
+	//출력
 	@Override
 	public void showAccInfo() {
 		super.showAccInfo();

@@ -48,24 +48,11 @@ public class HighCreditAccount extends Account {
 			cInterestRate = ICustomDefine.CREDIT_RATING_C;
 			break;
 		}
-		//if문
-//		if(creditRating.toUpperCase().equals("A")) {
-//			cInterestRate = ICustomDefine.CREDIT_RATING_A;
-//		}
-//		else if(creditRating.toUpperCase().equals("B")) {
-//			cInterestRate = ICustomDefine.CREDIT_RATING_B;
-//		}
-//		else if(creditRating.toUpperCase().equals("C")) {
-//			cInterestRate = ICustomDefine.CREDIT_RATING_C;
-//		}
-//		else {
-//			cInterestRate = 0;
-//		}
 		
 		myMoney+= ((myMoney*(interestRate/100))+(myMoney*(cInterestRate/100))+ money) ;
 		super.setBalance(myMoney);
 	}
-	
+	//출력
 	@Override
 	public void showAccInfo() {
 		super.showAccInfo();

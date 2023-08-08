@@ -65,19 +65,7 @@ abstract class Account {
 		if(balance< money) {
 			
 			allWithdrawMenu();
-			//숫자로 실행
-//			int aWd = scan.nextInt();
-//			scan.nextLine();
-//			if(aWd==ICustomDefine.YES_ALLWITHDRAW) {
-//				balance = 0;
-//				System.out.println("전액 출금되었습니다.");
-//			}
-//			else if (aWd==ICustomDefine.NO_ALLWITHDRAW) {
-//				System.out.println("출금요청이 취소되었습니다.");
-//			}
-//			else {
-//				System.out.println("잘못입력했습니다.");
-//			}
+
 			//문자로 실행
 			String aWd = scan.nextLine();
 
