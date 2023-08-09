@@ -1,10 +1,11 @@
-package banking4;
+package banking5;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 //계좌정보를 표현한 클래스로 NormalAccount, HighCreditAccount의 부모클래스가 된다. 
 
-abstract class Account extends Object {
+abstract class Account implements Serializable{
 
 	private String accountNumber; //계좌번호
 	private String name; //이름

@@ -7,18 +7,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class AccountManager {
-//	//배열 생성
-//	private Account[] myAccounts;
-//	/*배열 저장데이터 카운트 변수*/
-//	private int numOfAccounts;
-//	
-//	//생성자
-//	public AccountManager(int num) {
-//		//num 만큼의 배열 생성
-//		myAccounts = new Account[num];
-//		numOfAccounts = 0;
-//	}
-	
+	//Hashset 생성	
 	HashSet<Account> account = new HashSet<Account>();
 	
 	//계좌개설 메뉴
@@ -50,7 +39,8 @@ public class AccountManager {
 			try {
 				//메뉴외의 숫자를 입력하면 예외처리
 				if(makeChoice>2 || makeChoice<1) {
-					MenuSelectException ex = new MenuSelectException();
+					String msg = "지정된 숫자만 입력하세요";
+					MenuSelectException ex = new MenuSelectException(msg);
 					
 					throw ex;
 				}
@@ -69,48 +59,66 @@ public class AccountManager {
 			iInterestRate = scan.nextInt();
 			scan.nextLine();
 			
+			//Account 타입 생성 변수 
+			Account acc = null ;
+			
 			if(makeChoice==1) {
-				
-				Account acc = 
-						new NormalAccount(iAccountNum, iName, iBalance, iInterestRate);
-//				myAccounts[numOfAccounts++] = normal;
-				account.add(acc);
-				System.out.println("계좌계설이 완료되었습니다.");
+				//객체 생성
+				acc = new NormalAccount(iAccountNum, iName, iBalance, iInterestRate);
 			}
 			else if(makeChoice==2) {
 				System.out.print("신용등급(A,B,C등급):");
 				icreditRating = scan.nextLine();
+				icreditRating = icreditRating.toUpperCase();
+				//신용등급 외의 예외처리
+				try {
+					switch (icreditRating) {
+					case "A": case "B": case "C":
+						break;
+					default:
+						String msg = "지정된 신용등급만 적으세요";
+						MenuSelectException ex = new MenuSelectException(msg);
+						
+						throw ex;
+						
+					}
+				} 
+				catch (MenuSelectException e) {
+					System.out.println("[예외발생]"+e.getMessage());
+					return;
+				}
 				
-				Account acc =
-						new HighCreditAccount(iAccountNum, iName, 
+				//객체 생성
+				acc = new HighCreditAccount(iAccountNum, iName, 
 								iBalance, iInterestRate, icreditRating);
-//				myAccounts[numOfAccounts++] = high;
-				account.add(acc);
+			}
+			//객체 중복확인 변수, acc 추가 
+			boolean flag = account.add(acc);
+			
+			if(flag==true) {
 				System.out.println("계좌계설이 완료되었습니다.");
 			}
-			
-			//계좌번호 동일한 경우 
-			/*
-			계좌번호가 동일한 경우 중복된 계좌로 판단하여 다음과 같이 처리한다.
-			중복계좌발견됨. 덮어쓸까요?(y or n)
-			y 선택시 기존정보를 삭제하고 덮어쓰기한다. 
-			n 선택시 기존의 정보를 유지한다. 즉 새로운 정보는 무시된다.
-			 */
-			
-			boolean accFind = false;
-			
-			Iterator<Account> it = account.iterator();
-			
-			while(it.hasNext()) {
+			else {
+				System.out.println("중복계좌발견됨. 덮어쓸까요?(y or n)");
+				String yn= scan.nextLine();
+//				yn = yn.toUpperCase();
 				
-				Account
-				
+				switch (yn) {
+				case "y": case "Y": 
+					account.remove(acc);
+					account.add(acc);
+					System.out.println("새로운 정보로 덮어씌웠습니다.");
+					break;
+					
+				case "n": case "N":
+					System.out.println("기존 정보를 유지합니다.");
+					break;
+					
+				default:
+					System.out.println("다른문자를 입력하셨습니다.");
+					break;
+				}
 			}
-			
-			
-			
-			
-			
 		} catch (InputMismatchException e) {
 			System.out.println("숫자로만 입력해주세요");
 			scan.nextLine();
@@ -141,16 +149,6 @@ public class AccountManager {
 			if(money>0) {
 				if(money%500==0) {
 					//배열에 저장된 데이터 갯수만큼 반복
-//					for(int i=0; i<account.size(); i++) {
-//						
-//						if(searchANum.compareTo(
-//								myAccounts[i].getAccountNumber())==0) {
-//							
-//							myAccounts[i].deposit(money);
-//							isFind = true;
-//							System.out.println("입금이 완료되었습니다.");
-//						}
-//					}<Account> account
 					for(Account acc : account) {
 						if(searchANum.equals(acc.getAccountNumber())) {
 							acc.deposit(money);
@@ -180,8 +178,6 @@ public class AccountManager {
 			e.getMessage();
 			e.printStackTrace();
 		}
-
-		
 	}; 
 	
 	
@@ -205,23 +201,6 @@ public class AccountManager {
 			//if문으로 예외처리
 			if(money>0) {
 				if(money%1000==0) {
-					//배열에 저장된 데이터 갯수만큼 반복
-//					for(int i=0; i<numOfAccounts; i++) {
-//						//계좌번호 검색
-//						if(searchANum.compareTo(
-//								myAccounts[i].getAccountNumber())==0) {
-//
-//							//잔액부족시 전체출금 메뉴
-//							if(myAccounts[i].getBalance()<money) {
-//								//전체출금메뉴 Account에서 호출
-//								myAccounts[i].allWithdraw(money);
-//							}
-//							else {
-//								myAccounts[i].withdraw(money);
-//								System.out.println("출금이 완료되었습니다.");
-//							}
-//						}
-//					}
 					//배열에 저장된 데이터 갯수만큼 반복
 					for(Account acc : account) {
 						//계좌번호 검색
@@ -262,19 +241,50 @@ public class AccountManager {
 	public void showAccInfo() {
 //		System.out.println("전체계좌정보출력 호출");
 		System.out.println("***계좌정보출력***");
-//		for(int i=0; i<numOfAccounts; i++) {
-//			
+
+		//확장for문으로 작성
+//		for(Account acc : account) {
 //			System.out.println("-------");
-//			myAccounts[i].showAccInfo();
+//			acc.showAccInfo();
 //			System.out.println("-------");
 //		}
-		for(Account acc : account) {
+		//iterator로 작성
+		Iterator<Account> itr = account.iterator();
+		while(itr.hasNext()) {
+			Account ac = itr.next();
 			System.out.println("-------");
-			acc.showAccInfo();
+			ac.showAccInfo();
 			System.out.println("-------");
 		}
 		System.out.println("전체계좌정보 출력이 완료되었습니다.\n");
 		
 	};  
 
+	//계좌정보삭제
+	public void deleteInfo() {
+//		System.out.println("계좌정보 삭제 출력");
+		boolean isFind = false;
+		Scanner scan = new Scanner(System.in);
+		System.out.print("삭제할 계좌번호를 입력하세요: ");
+		String deleteNum = scan.nextLine();
+		
+		Iterator<Account> itr = account.iterator();
+		while(itr.hasNext()) {
+			
+			Account ac = itr.next();
+			
+			if(ac.getAccountNumber().equals(deleteNum)) {
+				account.remove(ac);
+				isFind = true;
+				break;
+			}
+		}
+		if(isFind==true) {
+			System.out.println("계좌가 삭제되었습니다.");
+		}
+		else {
+			System.out.println("찾는 정보가 없습니다.");
+		}
+	}
+	
 }

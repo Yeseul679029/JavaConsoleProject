@@ -10,10 +10,11 @@ public class BankingSystemMain {
 	public static void showMenu() {
 		System.out.println("-----Menu------");
 		System.out.print("1.계좌개설 ");
-		System.out.print("2.입	금 ");
-		System.out.print("3.출	금");
+		System.out.print("2.입금 ");
+		System.out.print("3.출금 ");
 		System.out.print("\n4.계좌정보출력 ");
-		System.out.print("5.프로그램종료\n");		
+		System.out.print("5.계좌정보삭제 ");
+		System.out.print("\n6.프로그램종료\n");		
 	};
 	
 	public static void main(String[] args){
@@ -44,7 +45,8 @@ public class BankingSystemMain {
 				try {
 					//메뉴외의 숫자를 입력하면 예외처리
 					if(choice>5 || choice<1) {
-						MenuSelectException ex = new MenuSelectException();
+						String msg = "1~5까지의 숫자만 입력하세요";
+						MenuSelectException ex = new MenuSelectException(msg);
 						
 						throw ex;
 					}
@@ -64,6 +66,9 @@ public class BankingSystemMain {
 					break;
 				case ICustomDefine.INQUIRE: //전체계좌정보출력
 					AManager.showAccInfo();
+					break;
+				case ICustomDefine.DELETE_INFO: //계좌정보삭제
+					AManager.deleteInfo();
 					break;
 				case ICustomDefine.EXIT: //프로그램종료
 					System.out.println("프로그램종료");

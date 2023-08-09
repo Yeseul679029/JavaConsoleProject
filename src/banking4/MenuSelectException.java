@@ -3,8 +3,8 @@ package banking4;
 
 public class MenuSelectException extends Exception {
 
-	public MenuSelectException() {
-		super("지정된 숫자만 입력하세요");
+	public MenuSelectException(String msg) {
+		super(msg);
 	}
 
 }
