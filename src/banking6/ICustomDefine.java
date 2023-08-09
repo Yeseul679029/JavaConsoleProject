@@ -1,0 +1,19 @@
+package banking6;
+/*
+interface로 생성한다. 
+메뉴선택과 이자율 지정을 위한 인터페이스형 상수를 정의한다. 
+메뉴 : 계좌개설, 입금, 출금, 전체계좌정보출력, 종료를 1~5까지로 지정한다.
+이자율 : 고객의 신용등급을 A, B, C로 나눠서 7%, 4%, 2%로 지정한다.
+
+ */
+public interface ICustomDefine {
+
+	public int MAKE=1,DEPOSIT=2,WITHDRAW=3,
+			INQUIRE=4,DELETE_INFO=5,AUTOSAVER=6, EXIT=7;
+	
+	public int CREDIT_RATING_A = 7, 
+			CREDIT_RATING_B = 4, 
+			CREDIT_RATING_C= 2;
+	
+	public int YES_ALLWITHDRAW = 1, NO_ALLWITHDRAW = 2;
+}

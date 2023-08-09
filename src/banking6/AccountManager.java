@@ -1,4 +1,4 @@
-package banking5;
+package banking6;
 //컨트롤 클래스로 프로그램의 전반적인 기능을 구현한다. 
 
 import java.io.EOFException;
@@ -17,33 +17,18 @@ public class AccountManager {
 	//Hashset 생성	
 	HashSet<Account> account = new HashSet<Account>();
 	
-	//계좌개설 메뉴
-	public static void makeShowMenu() {
-		System.out.println("-----계좌선택------");
-		System.out.println("1.보통계좌");
-		System.out.println("2.신용신뢰계좌");
-	}
 	
 	//불러오기 inputStream
 	public void inputAccount() {
 		ObjectInputStream in = null;
 		try {
 			in = new ObjectInputStream(
-				new FileInputStream("src/banking5/AccountInfo.obj"));
+				new FileInputStream("src/banking6/AccountInfo.obj"));
 			
-		//진짜 알수가없다 왜지 왜 지금은 되는지 모르겠다.
-		account =(HashSet<Account>)in.readObject();
-//				
-//		while (true) {
-//			account.add((NormalAccount)in.readObject());
-//			account.add((HighCreditAccount)in.readObject());
-//			account.add((Account)in.readObject());
-//			
-//			
-//			account = (HashSet<Account>)in.readObject();
-//		}
-		
-
+			//진짜 알수가없다 왜지 왜 지금은 되는지 모르겠다.
+			account =(HashSet<Account>)in.readObject();
+	
+			in.close();
 			
 		}
 		catch (FileNotFoundException e) {
@@ -54,22 +39,10 @@ public class AccountManager {
 			System.out.println("클래스없음");
 			
 		}
-		catch (EOFException e) {
-			System.out.println(e.getMessage());
-			
-		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 			
-		}
-		finally {
-			try {
-				in.close();
-			} catch (IOException e) {
-				System.out.println("파일스트림닫기오류");
-				e.printStackTrace();
-			}
 		}
 		
 	}
@@ -77,14 +50,10 @@ public class AccountManager {
 	public void outAccount() {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(
-				new FileOutputStream("src/banking5/AccountInfo.obj"));
+				new FileOutputStream("src/banking6/AccountInfo.obj"));
 			
 			out.writeObject(account);
 			System.out.println("저장되었습니다.");
-//			for(Account acc : account) {
-//				out.writeObject(acc);
-//				System.out.println("저장됨?");
-//			}
 			
 			out.close();
 		} catch (Exception e) {
@@ -93,6 +62,14 @@ public class AccountManager {
 		}
 		
 	}
+	
+	//계좌개설 메뉴
+	public static void makeShowMenu() {
+		System.out.println("-----계좌선택------");
+		System.out.println("1.보통계좌");
+		System.out.println("2.신용신뢰계좌");
+	}
+	
 	// 계좌개설을 위한 함수
 	public void makeAccount() {
 //		System.out.println("계좌개설 호출");
@@ -361,6 +338,31 @@ public class AccountManager {
 		else {
 			System.out.println("찾는 정보가 없습니다.");
 		}
+	}
+	
+	public void autosaver() {
+//		System.out.println("자동저장옵션 호출");
+		
+		System.out.println("-----계좌선택------");
+		System.out.println("1.자동저장On ");
+		System.out.println("2.자동저장Off ");
+		System.out.println("-----------------");
+		
+		Scanner scan = new Scanner(System.in);
+		int autoMenu = scan.nextInt();
+		
+		switch (autoMenu) {
+		case 1: 
+			//자동저장 on
+			break;
+		case 2: 
+			//자동저장 off
+			break;
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + autoMenu);
+		}
+		
+		
 	}
 	
 }

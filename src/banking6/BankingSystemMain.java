@@ -1,4 +1,4 @@
-package banking5;
+package banking6;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -14,7 +14,8 @@ public class BankingSystemMain {
 		System.out.print("3.출금 ");
 		System.out.print("\n4.계좌정보출력 ");
 		System.out.print("5.계좌정보삭제 ");
-		System.out.print("\n6.프로그램종료\n");		
+		System.out.print("\n6.저장옵션 ");
+		System.out.print("7.프로그램종료\n");		
 	};
 	
 	public static void main(String[] args){
@@ -47,8 +48,8 @@ public class BankingSystemMain {
 				//개발자지정 예외처리
 				try {
 					//메뉴외의 숫자를 입력하면 예외처리
-					if(choice>6 || choice<1) {
-						String msg = "1~6까지의 숫자만 입력하세요";
+					if(choice>7 || choice<1) {
+						String msg = "1~7까지의 숫자만 입력하세요";
 						MenuSelectException ex = new MenuSelectException(msg);
 						
 						throw ex;
@@ -72,6 +73,9 @@ public class BankingSystemMain {
 					break;
 				case ICustomDefine.DELETE_INFO: //계좌정보삭제
 					AManager.deleteInfo();
+					break;
+				case ICustomDefine.AUTOSAVER: //자동저장옵션
+					AManager.autosaver();
 					break;
 				case ICustomDefine.EXIT: //프로그램종료
 					System.out.println("프로그램종료");
