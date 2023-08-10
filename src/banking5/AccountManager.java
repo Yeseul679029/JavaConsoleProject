@@ -31,19 +31,17 @@ public class AccountManager {
 			in = new ObjectInputStream(
 				new FileInputStream("src/banking5/AccountInfo.obj"));
 			
-		//진짜 알수가없다 왜지 왜 지금은 되는지 모르겠다.
-		account =(HashSet<Account>)in.readObject();
-//				
-//		while (true) {
-//			account.add((NormalAccount)in.readObject());
-//			account.add((HighCreditAccount)in.readObject());
-//			account.add((Account)in.readObject());
-//			
-//			
-//			account = (HashSet<Account>)in.readObject();
-//		}
+			//진짜 알수가없다 왜지 왜 지금은 되는지 모르겠다.한서표
+			account =(HashSet<Account>)in.readObject();		
+			System.out.printf("[%d개의 계좌정보를 불러왔습니다.]\n", account.size());	
 		
-
+//			while (true) {
+//				account.add((Account)in.readObject());
+//				
+//				
+//				//account = (HashSet<Account>)in.readObject();
+//			}
+	
 			
 		}
 		catch (FileNotFoundException e) {
@@ -79,12 +77,15 @@ public class AccountManager {
 			ObjectOutputStream out = new ObjectOutputStream(
 				new FileOutputStream("src/banking5/AccountInfo.obj"));
 			
-			out.writeObject(account);
-			System.out.println("저장되었습니다.");
-//			for(Account acc : account) {
-//				out.writeObject(acc);
-//				System.out.println("저장됨?");
-//			}
+			//컬렉션을 통으로 저장한다.
+//			out.writeObject(account);
+//			System.out.println("저장되었습니다.");
+			
+			//하나씩 객체를 저장한다.
+			for(Account acc : account) {
+				out.writeObject(acc);
+//				System.out.println("확인용");
+			}
 			
 			out.close();
 		} catch (Exception e) {
@@ -318,12 +319,6 @@ public class AccountManager {
 //		System.out.println("전체계좌정보출력 호출");
 		System.out.println("***계좌정보출력***");
 
-		//확장for문으로 작성
-//		for(Account acc : account) {
-//			System.out.println("-------");
-//			acc.showAccInfo();
-//			System.out.println("-------");
-//		}
 		//iterator로 작성
 		Iterator<Account> itr = account.iterator();
 		while(itr.hasNext()) {

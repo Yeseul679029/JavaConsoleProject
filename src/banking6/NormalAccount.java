@@ -6,6 +6,14 @@ Account의 자식클래스로 보통예금계좌를 의미한다.
  */
 public class NormalAccount extends Account{
 	
+	@Override
+	public String toString() {
+		String str = 
+				String.format("계좌번호= %s, 이름= %s, 잔액= %d, 이자율= %f\n",
+						getAccountNumber(),getName(),getBalance(),interestRate);
+		return str;
+	}
+	
 	//이자비율 초기화
 	private double interestRate;
 	//생성자.

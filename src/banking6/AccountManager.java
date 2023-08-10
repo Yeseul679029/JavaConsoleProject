@@ -1,11 +1,11 @@
 package banking6;
 //컨트롤 클래스로 프로그램의 전반적인 기능을 구현한다. 
 
-import java.io.EOFException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashSet;
@@ -25,7 +25,7 @@ public class AccountManager {
 			in = new ObjectInputStream(
 				new FileInputStream("src/banking6/AccountInfo.obj"));
 			
-			//진짜 알수가없다 왜지 왜 지금은 되는지 모르겠다.
+			//컬렉션을 통으로 불러온다
 			account =(HashSet<Account>)in.readObject();
 	
 			in.close();
@@ -62,6 +62,8 @@ public class AccountManager {
 		}
 		
 	}
+	
+	
 	
 	//계좌개설 메뉴
 	public static void makeShowMenu() {
@@ -295,12 +297,6 @@ public class AccountManager {
 //		System.out.println("전체계좌정보출력 호출");
 		System.out.println("***계좌정보출력***");
 
-		//확장for문으로 작성
-//		for(Account acc : account) {
-//			System.out.println("-------");
-//			acc.showAccInfo();
-//			System.out.println("-------");
-//		}
 		//iterator로 작성
 		Iterator<Account> itr = account.iterator();
 		while(itr.hasNext()) {
@@ -340,6 +336,9 @@ public class AccountManager {
 		}
 	}
 	
+	//AutoSaver변수
+	AutoSaver save;
+	
 	public void autosaver() {
 //		System.out.println("자동저장옵션 호출");
 		
@@ -349,20 +348,54 @@ public class AccountManager {
 		System.out.println("-----------------");
 		
 		Scanner scan = new Scanner(System.in);
+		
 		int autoMenu = scan.nextInt();
 		
 		switch (autoMenu) {
 		case 1: 
 			//자동저장 on
+			if(save.isAlive()) {
+				System.out.println("자동저장 on");
+				save= new AutoSaver(this);
+				save.setDaemon(true);
+				save.start();
+			}
+			else {
+				System.out.println("자동저장이 이미 실행중입니다.");
+			}
 			break;
 		case 2: 
 			//자동저장 off
+			System.out.println("자동저장 off");
+			save.interrupt();
 			break;
 		default:
-			throw new IllegalArgumentException("Unexpected value: " + autoMenu);
+			System.out.println("다른문자를 입력했습니다.");
+			return;
 		}
 		
 		
+	}
+	
+	//저장txt파일생성
+	public void saveToFile() {
+		try {
+			FileWriter writer = new FileWriter(
+					new File("src/banking6/AutoSaveAccount.txt"));
+			
+			for(Account ac : account) {
+				
+				writer.write(ac.toString());
+//				System.out.println("이얍!");
+			}
+			
+			writer.close();
+			System.out.println("\n파일이 자동 저장되었습니다.");
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 }

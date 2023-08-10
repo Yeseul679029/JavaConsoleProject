@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 abstract class Account implements Serializable{
 
+	@Override
+	abstract public String toString() ;
+
 	private String accountNumber; //계좌번호
 	private String name; //이름
 	private int balance; //잔액
