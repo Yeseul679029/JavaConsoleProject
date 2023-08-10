@@ -172,6 +172,8 @@ public class AccountManager {
 	public void withdrawMoney() {
 //		System.out.println("출    금 호출");
 		
+		boolean isFind = false;
+		
 		System.out.println("***출   금***");
 		System.out.println("계좌번호와 출금할 금액을 입력하세요");
 		System.out.print("계좌번호: ");
@@ -201,9 +203,14 @@ public class AccountManager {
 							}
 							else {
 								myAccounts[i].withdraw(money);
+								isFind = true;
 								System.out.println("출금이 완료되었습니다.");
 							}
 						}
+					}
+					//찾는계좌가없다면
+					if(isFind==false) {
+						System.out.println("해당계좌없음");
 					}
 				}
 				else {

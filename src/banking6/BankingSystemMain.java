@@ -8,14 +8,16 @@ public class BankingSystemMain {
 
 	//메뉴출력 메서드
 	public static void showMenu() {
-		System.out.println("-----Menu------");
-		System.out.print("1.계좌개설 ");
-		System.out.print("2.입금 ");
-		System.out.print("3.출금 ");
-		System.out.print("\n4.계좌정보출력 ");
-		System.out.print("5.계좌정보삭제 ");
-		System.out.print("\n6.저장옵션 ");
-		System.out.print("7.프로그램종료\n");		
+		System.out.println("---------- Menu -----------");
+		System.out.print(" 1.계좌개설 ");
+		System.out.print(" 2.입금 ");
+		System.out.print(" 3.출금 ");
+		System.out.print("\n 4.계좌정보출력 ");
+		System.out.print(" 5.계좌정보삭제 ");
+		System.out.print("\n 6.저장옵션  ");
+		System.out.print(" 7.프로그램종료\n");	
+		System.out.println("---------------------------");	
+		
 	};
 	
 	public static void main(String[] args){

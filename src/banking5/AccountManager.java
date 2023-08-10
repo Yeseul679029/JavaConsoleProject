@@ -235,9 +235,9 @@ public class AccountManager {
 						
 					}
 					//찾는계좌가없다면
-	//				if(isFind==false) {
-	//				System.out.println("해당계좌없음");
-	//				}
+					if(isFind==false) {
+					System.out.println("해당계좌없음");
+					}
 				}
 				else {
 					System.out.println("입금액은 500원 단위로 가능합니다.");
@@ -261,6 +261,8 @@ public class AccountManager {
 	// 출    금
 	public void withdrawMoney() {
 //		System.out.println("출    금 호출");
+		
+		boolean isFind = false;
 		
 		System.out.println("***출   금***");
 		System.out.println("계좌번호와 출금할 금액을 입력하세요");
@@ -292,6 +294,10 @@ public class AccountManager {
 								System.out.println("출금이 완료되었습니다.");
 							}
 						}
+					}
+					//찾는계좌가없다면
+					if(isFind==false) {
+						System.out.println("해당계좌없음");
 					}
 				}
 				else {

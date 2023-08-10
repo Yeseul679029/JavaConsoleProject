@@ -213,9 +213,9 @@ public class AccountManager {
 						
 					}
 					//찾는계좌가없다면
-	//				if(isFind==false) {
-	//				System.out.println("해당계좌없음");
-	//				}
+					if(isFind==false) {
+					System.out.println("해당계좌없음");
+					}
 				}
 				else {
 					System.out.println("입금액은 500원 단위로 가능합니다.");
@@ -239,6 +239,8 @@ public class AccountManager {
 	// 출    금
 	public void withdrawMoney() {
 //		System.out.println("출    금 호출");
+
+		boolean isFind = false;
 		
 		System.out.println("***출   금***");
 		System.out.println("계좌번호와 출금할 금액을 입력하세요");
@@ -270,6 +272,10 @@ public class AccountManager {
 								System.out.println("출금이 완료되었습니다.");
 							}
 						}
+					}
+					//찾는계좌가없다면
+					if(isFind==false) {
+						System.out.println("해당계좌없음");
 					}
 				}
 				else {
@@ -336,16 +342,29 @@ public class AccountManager {
 		}
 	}
 	
-	//AutoSaver변수
-	AutoSaver save;
+	/*
+	AutoSaver변수 case 안쪽에 생성을하면 isAlive 조건을 확인하자마자 nullpointexception이 떨어진다
+	객체가 생성되지 않아 나타나는 현상으로 보여 위치를 옮겼다.
+	1.스레드 객체가 생성되지 않은 경우 : 스레드 객체를 생성한 후에 isAlive()를 호출하도록 보장
+	2.스레드 객체가 null인 상태에서 isAlive()를 호출한 경우
+	: 객체가 null 상태이므로, isAlive() 호출 시 NullPointerException이 발생합니다. 
+	  myThread 객체가 생성되었는지 확인하고, null 상태가 아닌 경우에만 isAlive()를 호출하도록 보장
+	*/
+//	AutoSaver save;
+	AutoSaver save= new AutoSaver(this);
 	
 	public void autosaver() {
 //		System.out.println("자동저장옵션 호출");
 		
-		System.out.println("-----계좌선택------");
-		System.out.println("1.자동저장On ");
-		System.out.println("2.자동저장Off ");
-		System.out.println("-----------------");
+//		if(save.isAlive()==true) {
+//			System.out.println("이미 실행 중입니다.");
+//			return;
+//		}
+		
+		System.out.println("---------자동저장옵션---------");
+		System.out.println("1.자동저장On, 2.자동저장Off ");
+//		System.out.println("2.자동저장Off ");
+		System.out.println("---------------------------");
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -354,15 +373,20 @@ public class AccountManager {
 		switch (autoMenu) {
 		case 1: 
 			//자동저장 on
-			if(save.isAlive()) {
-				System.out.println("자동저장 on");
-				save= new AutoSaver(this);
+			System.out.println("자동저장 on");
+//			save= new AutoSaver(this);
+			//스레드가 살아있는지 확인
+			if(save.isAlive()==true) {
+				//스레드가 살아있다면
+				System.out.println("이미 자동저장이 실행 중입니다.");
+				return;
+			}
+			else {
+				//스레드가 없다면 데몬스레드를 생성, 시작한다.
 				save.setDaemon(true);
 				save.start();
 			}
-			else {
-				System.out.println("자동저장이 이미 실행중입니다.");
-			}
+			
 			break;
 		case 2: 
 			//자동저장 off

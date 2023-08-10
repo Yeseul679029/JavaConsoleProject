@@ -1,4 +1,4 @@
-package banking1;
+package banking7;
 
 import java.util.Scanner;
 
@@ -10,12 +10,6 @@ public class BankingSystemMain {
 	/*배열 저장데이터 카운트 변수*/
 	private static int numOfAccounts;
 	
-	//생성자
-//	public BankingSystemMain(int num) {
-//		//num 만큼의 배열 생성
-//		myAccounts = new Account[num];
-//		numOfAccounts = 0;
-//	}
 		
 	//메뉴출력 메서드
 	public static void showMenu() {	
@@ -33,8 +27,6 @@ public class BankingSystemMain {
 		//사용자 입력
 		Scanner scan = new Scanner(System.in);
 		
-		//인스턴스 생성
-//		BankingSystemMain AManager = new BankingSystemMain(50);
 		//50개를 담을 수 있는 배열로 지정
 		myAccounts = new Account[50];
 		numOfAccounts = 0;

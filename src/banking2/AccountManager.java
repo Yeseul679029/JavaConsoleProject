@@ -98,9 +98,9 @@ public class AccountManager {
 			
 		}
 		//찾는계좌가없다면
-//		if(isFind==false) {
-//			System.out.println("해당계좌없음");
-//		}
+		if(isFind==false) {
+			System.out.println("해당계좌없음");
+		}
 		
 		
 	};   
@@ -135,9 +135,9 @@ public class AccountManager {
 			
 		}
 		//찾는계좌가없다면
-//		if(isFind==false) {
-//			System.out.println("해당계좌없음");
-//		}
+		if(isFind==false) {
+			System.out.println("해당계좌없음");
+		}
 		
 		
 	}; 

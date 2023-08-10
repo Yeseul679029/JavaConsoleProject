@@ -9,8 +9,8 @@ public class HighCreditAccount extends Account {
 	@Override
 	public String toString() {
 		String str = 
-				String.format("계좌번호= %s, 이름= %s, 잔액= %d, 이자율= %f%s, 신용등급= %s\n",
-						getAccountNumber(),getName(),getBalance(),interestRate,"%%",creditRating);
+				String.format("계좌번호= %s, 이름= %s, 잔액= %d, 이자율= %.0f%s, 신용등급= %s\n",
+						getAccountNumber(),getName(),getBalance(),interestRate," %",creditRating);
 		return str;
 	}
 	//이자비율 초기화
