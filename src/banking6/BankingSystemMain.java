@@ -29,9 +29,6 @@ public class BankingSystemMain {
 		//기능담당 AccountManager의 인스턴스 생성
 		AccountManager AManager = new AccountManager();
 		
-		
-		
-		
 		//인풋스트림 호출
 		AManager.inputAccount();
 		

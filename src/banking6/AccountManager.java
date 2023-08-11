@@ -14,9 +14,13 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class AccountManager {
-	//Hashset 생성	
+	//Hash set 생성	
 	HashSet<Account> account = new HashSet<Account>();
 	
+	
+	
+	//	AutoSaver save;
+	AutoSaver save= new AutoSaver(this);
 	
 	//불러오기 inputStream
 	public void inputAccount() {
@@ -350,9 +354,7 @@ public class AccountManager {
 	: 객체가 null 상태이므로, isAlive() 호출 시 NullPointerException이 발생합니다. 
 	  myThread 객체가 생성되었는지 확인하고, null 상태가 아닌 경우에만 isAlive()를 호출하도록 보장
 	*/
-//	AutoSaver save;
-	AutoSaver save= new AutoSaver(this);
-	
+
 	public void autosaver() {
 //		System.out.println("자동저장옵션 호출");
 		
