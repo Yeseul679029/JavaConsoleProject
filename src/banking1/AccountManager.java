@@ -1,6 +1,6 @@
 package banking1;
 //컨트롤 클래스로 프로그램의 전반적인 기능을 구현한다. 
-
+//banking1에서는 사용하지 않음
 import java.util.Scanner;
 
 public class AccountManager {
