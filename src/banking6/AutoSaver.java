@@ -1,8 +1,5 @@
 package banking6;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 
 
 public class AutoSaver extends Thread {

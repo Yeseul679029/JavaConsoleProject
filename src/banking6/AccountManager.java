@@ -19,8 +19,6 @@ public class AccountManager {
 	
 	
 	
-	//	AutoSaver save;
-	AutoSaver save= new AutoSaver(this);
 	
 	//불러오기 inputStream
 	public void inputAccount() {
@@ -354,14 +352,15 @@ public class AccountManager {
 	: 객체가 null 상태이므로, isAlive() 호출 시 NullPointerException이 발생합니다. 
 	  myThread 객체가 생성되었는지 확인하고, null 상태가 아닌 경우에만 isAlive()를 호출하도록 보장
 	*/
+	
+	//밖에서 스레드 객체 생성
+//	AutoSaver save;
+	AutoSaver save= new AutoSaver(this);
+	
 
 	public void autosaver() {
 //		System.out.println("자동저장옵션 호출");
 		
-//		if(save.isAlive()==true) {
-//			System.out.println("이미 실행 중입니다.");
-//			return;
-//		}
 		
 		System.out.println("---------자동저장옵션---------");
 		System.out.println("1.자동저장On, 2.자동저장Off ");
