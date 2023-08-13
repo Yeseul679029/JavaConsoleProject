@@ -3,7 +3,7 @@ package banking7.jdbc;
 import java.util.Scanner;
 
 //main 메서드를 포함한 클래스. 프로그램은 여기서 실행한다. 
-public class BankingSystemMain {
+public class BankingSystemMainB {
 
 	//배열 생성 static을 붙여줘야한다.
 	private static Account[] myAccounts;
@@ -64,25 +64,22 @@ public class BankingSystemMain {
 	public static void makeAccount() {
 //		System.out.println("계좌개설 호출");
 		//사용자 입력
-//		Scanner scan = new Scanner(System.in);
-//		String iAccountNum, iName; 
-//		int iBalance;
-//		System.out.print("계좌번호: ");
-//		iAccountNum = scan.nextLine();
-//		System.out.print("이름: ");
-//		iName = scan.nextLine();
-//		System.out.print("잔고: ");
-//		iBalance = scan.nextInt();
+		Scanner scan = new Scanner(System.in);
+		String iAccountNum, iName; 
+		int iBalance;
+		System.out.print("계좌번호: ");
+		iAccountNum = scan.nextLine();
+		System.out.print("이름: ");
+		iName = scan.nextLine();
+		System.out.print("잔고: ");
+		iBalance = scan.nextInt();
 		
-//		new InsertSQL(iAccountNum,iName,iBalance).execute();
-		
-		InsertSQL iSQL = new InsertSQL();
-		
+		new InsertSQL(iAccountNum,iName,iBalance).execute();
 		
 		System.out.println("계좌계설이 완료되었습니다.");
 		
 		Account account = 
-				new Account(iSQL.accNum, iSQL.name, iSQL.balance);
+				new Account(iAccountNum, iName, iBalance);
 		
 		//인스턴스 배열에 추가 0번인덱스에 추가후 1증가 
 		myAccounts[numOfAccounts++] = account;
