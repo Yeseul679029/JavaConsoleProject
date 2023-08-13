@@ -74,7 +74,7 @@ public class BankingSystemMainB {
 		System.out.print("잔고: ");
 		iBalance = scan.nextInt();
 		
-		new InsertSQL(iAccountNum,iName,iBalance).execute();
+//		new InsertSQL(iAccountNum,iName,iBalance).execute();
 		
 		System.out.println("계좌계설이 완료되었습니다.");
 		

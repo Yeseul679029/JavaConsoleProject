@@ -19,8 +19,19 @@ public class IConnectImpl implements IConnect {
 	public Statement stmt; //정적쿼리 실행
 	public CallableStatement csmt; //프로시저 실행
 	
+	//매개변수 없음
 	public IConnectImpl() {
-		
+		System.out.println("IConnectImpl 인자생성자 호출");
+		try {
+			//인터페이스에 선언된 멤버상수를 그대로 사용
+			Class.forName(ORACLE_DRIVER);
+			//매개변수를 통해 받은 계정정보를 사용
+			connect("education","1234");
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패");
+			e.printStackTrace();
+		}
 	}
 	//인수생성자1 : 아이디, 패스워드를 매개변수로 받음
 	public IConnectImpl(String user, String pass) {

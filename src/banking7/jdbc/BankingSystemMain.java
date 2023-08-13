@@ -2,6 +2,8 @@ package banking7.jdbc;
 
 import java.util.Scanner;
 
+
+
 //main 메서드를 포함한 클래스. 프로그램은 여기서 실행한다. 
 public class BankingSystemMain {
 
@@ -78,11 +80,12 @@ public class BankingSystemMain {
 		
 		InsertSQL iSQL = new InsertSQL();
 		
+		iSQL.execute();
 		
 		System.out.println("계좌계설이 완료되었습니다.");
 		
 		Account account = 
-				new Account(iSQL.accNum, iSQL.name, iSQL.balance);
+				new Account( iSQL.accNum, iSQL.name, iSQL.balance);
 		
 		//인스턴스 배열에 추가 0번인덱스에 추가후 1증가 
 		myAccounts[numOfAccounts++] = account;
@@ -170,6 +173,10 @@ public class BankingSystemMain {
 	public static void showAccInfo() {
 //		System.out.println("전체계좌정보출력 호출");
 		System.out.println("***계좌정보출력***");
+		
+		selectSQL selectSQL = new selectSQL();
+		selectSQL.execute();
+		
 		for(int i=0; i<numOfAccounts; i++) {
 			
 			myAccounts[i].showAccInfo();

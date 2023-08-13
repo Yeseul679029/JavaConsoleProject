@@ -18,32 +18,7 @@ public class InsertSQL extends IConnectImpl {
 //		this.balance = balance;
 //	}
 	
-	//getter,setter
-	public String getAccNum() {
-		return accNum;
-	}
 
-	public void setAccNum(String accNum) {
-		this.accNum = accNum;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getBalance() {
-		return balance;
-	}
-
-	public void setBalance(int balance) {
-		this.balance = balance;
-	}
-
-	
 	
 	
 	@Override
@@ -51,7 +26,7 @@ public class InsertSQL extends IConnectImpl {
 		
 		try {
 			
-			String query = "INSERT INTO banking_tb VALUES ( ?, ?, ? )";
+			String query = "INSERT INTO banking_tb VALUES ( seq_banking.NEXTVAL, ?, ?, ? )";
 			
 			psmt = con.prepareStatement(query);
 			
@@ -69,7 +44,7 @@ public class InsertSQL extends IConnectImpl {
 			psmt.setString(2, name);
 			psmt.setLong(3, balance);
 			
-			System.out.println("계좌계설이 완료되었습니다.");
+			
 			//5.쿼리실행 및 결과값 반환
 			int affected = psmt.executeUpdate();
 			System.out.println(affected + "행이 입력되었습니다.");
