@@ -13,6 +13,8 @@ public class selectSQL extends IConnectImpl {
 					+ " FROM banking_tb";
 			
 			rs = stmt.executeQuery(query);
+			System.out.printf("%s %s %s %s\n",
+					"번호","계좌번호","이름","잔액");
 			while(rs.next()) {
 				String seq_num = rs.getString(1);
 				String account_id = rs.getString(2);
