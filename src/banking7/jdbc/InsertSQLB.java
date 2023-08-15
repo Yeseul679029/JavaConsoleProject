@@ -5,10 +5,6 @@ public class InsertSQLB extends IConnectImpl {
 	String accNum,name;
 	int balance;
 	
-	public InsertSQLB() {
-		super(ORACLE_DRIVER, "education", "1234");
-	}
-	
 	
 	public InsertSQLB(String accNum, String name, int balance) {
 		this.accNum = accNum;

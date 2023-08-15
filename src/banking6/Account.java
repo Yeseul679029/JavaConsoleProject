@@ -96,7 +96,7 @@ abstract class Account implements Serializable{
 			String aWd = scan.nextLine();
 
 			if(aWd.toUpperCase().equals("YES")) {
-				balance = 0;
+				balance -= balance;
 				System.out.println("전액 출금되었습니다.");
 			}
 			else if (aWd.toUpperCase().equals("NO")) {

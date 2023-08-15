@@ -9,7 +9,7 @@ public class HighCreditAccount extends Account {
 	@Override
 	public String toString() {
 		String str = 
-				String.format("계좌번호= %s, 이름= %s, 잔액= %d, 이자율= %.0f%s, 신용등급= %s\n",
+				String.format("신용신뢰계좌> %s, 이름= %s, 잔액= %d, 이자율= %.0f%s, 신용등급= %s\n",
 						getAccountNumber(),getName(),getBalance(),interestRate," %",creditRating);
 		return str;
 	}

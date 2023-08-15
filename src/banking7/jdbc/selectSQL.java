@@ -8,9 +8,11 @@ public class selectSQL extends IConnectImpl {
 	public void execute() {
 		try {
 			stmt = con.createStatement();
-			
-			String query = "SELECT seq_num, account_id, customer_name, balance "
+			//쿼리문 작성
+			String query = "SELECT seq_num, account_id, customer_name, "
+					+ " trim(to_char(balance, '999,999,000')) as balance "
 					+ " FROM banking_tb";
+//			String query = "SELECT * FROM banking_tb";
 			
 			rs = stmt.executeQuery(query);
 			System.out.printf("%s %s %s %s\n",

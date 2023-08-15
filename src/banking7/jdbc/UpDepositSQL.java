@@ -16,7 +16,6 @@ public class UpDepositSQL extends IConnectImpl{
 			psmt = con.prepareStatement(sql);
 			
 				psmt.setString(2, scanValue("계좌번호를 입력해주세요."));
-//				psmt.setString(1, scanValue("이름"));
 				psmt.setString(1, scanValue("입금액"));
 				
 				//쿼리문 실행 및 결과확인

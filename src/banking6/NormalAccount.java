@@ -9,7 +9,7 @@ public class NormalAccount extends Account{
 	@Override
 	public String toString() {
 		String str = 
-				String.format("계좌번호= %s, 이름= %s, 잔액= %d, 이자율= %.0f%s\n",
+				String.format("보통예금계좌> %s, 이름= %s, 잔액= %d, 이자율= %.0f%s\n",
 						getAccountNumber(),getName(),getBalance(),interestRate," %");
 		return str;
 	}

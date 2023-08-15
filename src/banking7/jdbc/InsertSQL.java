@@ -7,10 +7,6 @@ public class InsertSQL extends IConnectImpl {
 	String accNum,name;
 	int balance;
 	
-	public InsertSQL() {
-		super(ORACLE_DRIVER, "education", "1234");
-	}
-	
 	
 //	public InsertSQL(String accNum, String name, int balance) {
 //		this.accNum = accNum;

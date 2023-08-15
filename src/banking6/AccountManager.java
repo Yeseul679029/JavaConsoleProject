@@ -29,7 +29,7 @@ public class AccountManager {
 			
 			//컬렉션을 통으로 불러온다
 			account =(HashSet<Account>)in.readObject();
-	
+			System.out.printf("[%d개의 계좌정보를 불러왔습니다.]\n", account.size());
 			in.close();
 			
 		}
@@ -211,8 +211,8 @@ public class AccountManager {
 							acc.deposit(money);
 							isFind = true;
 							System.out.println("입금이 완료");
+							return;
 						}
-						
 					}
 					//찾는계좌가없다면
 					if(isFind==false) {
@@ -273,6 +273,7 @@ public class AccountManager {
 								acc.withdraw(money);
 								System.out.println("출금이 완료되었습니다.");
 							}
+							return;
 						}
 					}
 					//찾는계좌가없다면
@@ -359,12 +360,10 @@ public class AccountManager {
 	
 
 	public void autosaver() {
-//		System.out.println("자동저장옵션 호출");
 		
 		
 		System.out.println("---------자동저장옵션---------");
 		System.out.println("1.자동저장On, 2.자동저장Off ");
-//		System.out.println("2.자동저장Off ");
 		System.out.println("---------------------------");
 		
 		Scanner scan = new Scanner(System.in);
@@ -375,7 +374,6 @@ public class AccountManager {
 		case 1: 
 			//자동저장 on
 			System.out.println("자동저장 on");
-//			save= new AutoSaver(this);
 			//스레드가 살아있는지 확인
 			if(save.isAlive()==true) {
 				//스레드가 살아있다면

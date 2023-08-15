@@ -21,38 +21,10 @@ public class IConnectImpl implements IConnect {
 	
 	//매개변수 없음
 	public IConnectImpl() {
-		System.out.println("IConnectImpl 인자생성자 호출");
 		try {
-			//인터페이스에 선언된 멤버상수를 그대로 사용
 			Class.forName(ORACLE_DRIVER);
-			//매개변수를 통해 받은 계정정보를 사용
 			connect("education","1234");
 			
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패");
-			e.printStackTrace();
-		}
-	}
-	//인수생성자1 : 아이디, 패스워드를 매개변수로 받음
-	public IConnectImpl(String user, String pass) {
-		System.out.println("IConnectImpl 인자생성자 호출");
-		try {
-			//인터페이스에 선언된 멤버상수를 그대로 사용
-			Class.forName(ORACLE_DRIVER);
-			//매개변수를 통해 받은 계정정보를 사용
-			connect(user,pass);
-			
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패");
-			e.printStackTrace();
-		}
-	}
-	//인수생성자2: 드라이버명까지 매개변수로 받음
-	public IConnectImpl(String driver, String user, String pass) {
-		System.out.println("IConnectImpl 인자생성자 호출");
-		try {
-			Class.forName(driver);
-			connect(user, pass);
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패");
 			e.printStackTrace();
@@ -86,7 +58,7 @@ public class IConnectImpl implements IConnect {
 			if(rs!=null) rs.close();
 			if(stmt!=null) stmt.close();
 			if(csmt!=null) csmt.close();
-			System.out.println("자원 반납 완료");
+//			System.out.println("자원 반납 완료");
 			
 		} catch (Exception e) {
 			System.out.println("자원 반납시 오류발생");
@@ -97,7 +69,7 @@ public class IConnectImpl implements IConnect {
 	@Override
 	public String scanValue(String title) {
 		Scanner scan = new Scanner(System.in);
-		System.out.println(title + "을(를) 입력(exit->종료): ");
+		System.out.println(title);
 		String inputStr = scan.nextLine();
 		
 		if("EXIT".equalsIgnoreCase(inputStr)) {
